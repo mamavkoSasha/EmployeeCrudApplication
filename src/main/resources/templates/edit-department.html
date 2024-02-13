@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit department</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .warning-message {
+            display: flex;
+            align-items: center;
+            color: red;
+            margin-top: 5px;
+        }
+
+        .eye-icon {
+            margin-right: 5px;
+        }
+
+        #empAge {
+            width: 80px;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-container label {
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Edit Department</h1>
+<form th:action="@{/department/edit}" th:method="post">
+    <div class="input-container">
+        <input type="hidden" th:field="${department.dpID}" name="id"/>
+        dpName: <input type="text" th:field="${department.dpName}" name="dpName"/><br><br>
+        <div th:if="${warningMessage}" class="warning-message">
+            <i class="fas fa-exclamation-circle eye-icon"></i>
+            <p th:text="${warningMessage}"></p>
+        </div>
+    </div>
+    <button><a th:href="@{/department/all}">Cancel</a></button>
+    <input type="submit" value="Save"/>
+</form>
+</body>
+</html>

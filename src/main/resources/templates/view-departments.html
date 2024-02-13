@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Employee</title>
+</head>
+<body>
+<h1>View Employee</h1>
+<div th:each="department : ${department}" th:data-dp-id="${department.dpID}">
+    <div class="column">
+        <b>dpName:</b> <span th:text="${department.dpName}"></span>
+    </div>
+</div>
+<br>
+Information...<br><br>
+<a th:href="@{/department/all}">
+    <button><-Back</button>
+</a>
+</body>
+</html>

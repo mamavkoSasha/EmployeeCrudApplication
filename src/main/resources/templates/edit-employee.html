@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .warning-message {
+            display: flex;
+            align-items: center;
+            color: red;
+            margin-top: 5px;
+        }
+
+        .eye-icon {
+            margin-right: 5px;
+        }
+
+        #empAge {
+            width: 80px;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-container label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Edit Employee</h1>
+<form th:action="@{/employee/edit}" th:method="post">
+    <input type="hidden" th:field="${employee.empID}" name="id"/>
+    empName: <input type="text" th:field="${employee.empName}" name="empName"/><br>
+    empActive: <input type="checkbox" th:field="${employee.empActive}" th:value="Yes" name="empActive"/><br>
+    Date: <input type="text" th:field="${employee.date}" name="date"/><br>
+
+    <div class="input-container">
+        <label for="empAge">Age</label>
+        <input id="empAge" type="text" placeholder="Enter age" th:field="*{employee.age}" required>
+        <!-- Add the warning message to the side of the Age field -->
+        <div th:if="${warningMessage}" class="warning-message">
+            <i class="fas fa-exclamation-circle eye-icon"></i>
+            <p th:text="${warningMessage}"></p>
+        </div>
+    </div>
+
+    City: <input type="text" th:field="${employee.city}" name="city"/><br>
+
+    empDepartment: <select th:field="*{employee.depId}">
+    <option th:each="department:${departments}" th:value="${department.dpID}" th:text="${department.dpName}"/>
+</select><br><br>
+    <button><a th:href="@{/employee/all}">Cancel</a></button>
+    <input type="submit" value="Save"/>
+</form>
+</body>
+</html>

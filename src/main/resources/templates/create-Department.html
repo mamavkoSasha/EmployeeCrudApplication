@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Department</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .warning-message {
+            display: flex;
+            align-items: center;
+            color: red;
+            margin-top: 5px;
+        }
+
+        .eye-icon {
+            margin-right: 5px;
+        }
+
+        #empAge {
+            width: 80px;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-container label {
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Create new Department</h1>
+<form th:method="post" th:action="@{/department/create}" th:object="${department}">
+    <div class="input-container">
+        <label for="dpName">dpName</label>
+        <input id="dpName" type="text" placeholder="Enter name" th:field="*{dpName}" required><br><br>
+        <div th:if="${warningMessage}" class="warning-message">
+            <i class="fas fa-exclamation-circle eye-icon"></i>
+            <p th:text="${warningMessage}"></p>
+        </div>
+    </div>
+
+    <button><a th:href="@{/department/all}">Cancel</a></button>
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>
