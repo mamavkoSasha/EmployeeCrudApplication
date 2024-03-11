@@ -5,6 +5,57 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #empAge {
+            width: 80px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         .warning-message {
             display: flex;
             align-items: center;
@@ -16,17 +67,35 @@
             margin-right: 5px;
         }
 
-        #empAge {
-            width: 80px;
-        }
-
-        .input-container {
+        .button-container {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
         }
 
-        .input-container label {
-            margin-right: 10px;
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        #create-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        #cancel-button {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        button:hover {
+            opacity: 0.8;
         }
     </style>
 
@@ -34,16 +103,22 @@
 <body>
 <h1>Edit Department</h1>
 <form th:action="@{/department/edit}" th:method="post">
+
     <div class="input-container">
         <input type="hidden" th:field="${department.dpID}" name="id"/>
-        dpName: <input type="text" th:field="${department.dpName}" name="dpName"/><br><br>
+        <label>dpName:</label>
+        <input type="text" th:field="${department.dpName}" name="dpName"/><br><br>
         <div th:if="${warningMessage}" class="warning-message">
             <i class="fas fa-exclamation-circle eye-icon"></i>
             <p th:text="${warningMessage}"></p>
         </div>
     </div>
-    <button><a th:href="@{/department/all}">Cancel</a></button>
-    <input type="submit" value="Save"/>
+
+    <div class="button-container">
+        <button id="cancel-button"><a th:href="@{/department/all}">Cancel</a></button>
+        <button type="submit" id="create-button" value="Save">Create</button>
+    </div>
+
 </form>
 </body>
 </html>

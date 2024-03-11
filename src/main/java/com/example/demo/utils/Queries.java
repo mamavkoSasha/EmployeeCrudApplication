@@ -34,6 +34,7 @@ public interface Queries {
         UPDATE,
         SELECT_BY_EMAIL,
         SELECT_BY_USER_ID,
-        SELECT_BY_USERNAME
+        SELECT_BY_USERNAME,
+        COUNT_OF_USERS
     }
 }

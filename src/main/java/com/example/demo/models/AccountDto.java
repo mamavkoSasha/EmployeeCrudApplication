@@ -15,5 +15,5 @@ public class AccountDto {
     private String email;
     private String username;
     private char[] password;
-    private AccountType accountType;
+    private AccountType accountType = AccountType.USER;
 }

@@ -1,10 +1,130 @@
+<!--<!DOCTYPE HTML>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>New Employee</title>-->
+
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">-->
+<!--    <style>-->
+<!--        .warning-message {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            color: red;-->
+<!--            margin-top: 5px;-->
+<!--        }-->
+
+<!--        .eye-icon {-->
+<!--            margin-right: 5px;-->
+<!--        }-->
+
+<!--        #empAge {-->
+<!--            width: 80px;-->
+<!--        }-->
+
+<!--        .input-container {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+<!--        .input-container label {-->
+<!--            margin-right: 10px;-->
+<!--        }-->
+<!--    </style>-->
+
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Create new Employee</h1>-->
+
+<!--<form th:method="post" th:action="@{/employee/create/new}" th:object="${employee}">-->
+<!--    <label for="empName">empName</label>-->
+<!--    <input id="empName" type="text" class="input" placeholder="Enter name" th:field="*{empName}" required><br><br>-->
+
+<!--    <label for="empActive">empActive</label>-->
+<!--    <input id="empActive" type="checkbox" th:field="*{empActive}" th:value="Yes"><br><br>-->
+
+<!--    <label>empDepartment</label>-->
+<!--    <select th:field="*{depId}">-->
+<!--        <option th:each="department:${departments}" th:value="${department.dpID}" th:text="${department.dpName}"/>-->
+<!--    </select> <br><br>-->
+
+<!--    <label for="date">Date</label>-->
+<!--    <input id="date" type="text" placeholder="year-month-day" th:field="*{date}" required><br>-->
+
+<!--    <div class="input-container">-->
+<!--        <label for="empAge">Age</label>-->
+<!--        <input id="empAge" type="text" placeholder="Enter age" th:field="*{age}" required>-->
+<!--        &lt;!&ndash; Add the warning message to the side of the Age field &ndash;&gt;-->
+<!--        <div th:if="${warningMessage}" class="warning-message">-->
+<!--            <i class="fas fa-exclamation-circle eye-icon"></i>-->
+<!--            <p th:text="${warningMessage}"></p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <label for="city">City</label>-->
+<!--    <input id="city" type="text" placeholder="Enter the city where you live" th:field="*{city}" required><br><br>-->
+
+<!--    <button><a th:href="@{/employee/all}">Cancel</a></button>-->
+<!--    <input type="submit" value="Create">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>New Employee</title>
-
+    <title>Create new Employee</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #empAge {
+            width: 80px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         .warning-message {
             display: flex;
             align-items: center;
@@ -16,54 +136,82 @@
             margin-right: 5px;
         }
 
-        #empAge {
-            width: 80px;
-        }
-
-        .input-container {
+        .button-container {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
         }
 
-        .input-container label {
-            margin-right: 10px;
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        #create-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        #cancel-button {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        button:hover {
+            opacity: 0.8;
         }
     </style>
-
 </head>
 <body>
 <h1>Create new Employee</h1>
 
 <form th:method="post" th:action="@{/employee/create/new}" th:object="${employee}">
-    <label for="empName">empName</label>
-    <input id="empName" type="text" placeholder="Enter name" th:field="*{empName}" required><br><br>
+    <div class="input-container">
+        <label for="empName">Employee Name</label>
+        <input id="empName" type="text" class="input" placeholder="Enter name" th:field="*{empName}" required>
+    </div>
 
-    <label for="empActive">empActive</label>
-    <input id="empActive" type="checkbox" th:field="*{empActive}" th:value="Yes"><br><br>
+    <div class="input-container">
+        <label for="empActive">Employee Active</label>
+        <input id="empActive" type="checkbox" th:field="*{empActive}" th:value="Yes">
+    </div>
 
-    <label>empDepartment</label>
-    <select th:field="*{depId}">
-        <option th:each="department:${departments}" th:value="${department.dpID}" th:text="${department.dpName}"/>
-    </select> <br><br>
+    <div class="input-container">
+        <label for="depId"> Department</label>
+        <select id="depId" th:field="*{depId}">
+            <option th:each="department:${departments}" th:value="${department.dpID}" th:text="${department.dpName}"/>
+        </select>
+    </div>
 
-    <label for="date">Date</label>
-    <input id="date" type="text" placeholder="year-month-day" th:field="*{date}" required><br>
+    <div class="input-container">
+        <label for="date">Date</label>
+        <input id="date" type="text" placeholder="year-month-day" class="input" th:field="*{date}" required>
+    </div>
 
     <div class="input-container">
         <label for="empAge">Age</label>
-        <input id="empAge" type="text" placeholder="Enter age" th:field="*{age}" required>
-        <!-- Add the warning message to the side of the Age field -->
+        <input id="empAge" type="text" class="input" placeholder="Enter age" th:field="*{age}" required>
         <div th:if="${warningMessage}" class="warning-message">
             <i class="fas fa-exclamation-circle eye-icon"></i>
             <p th:text="${warningMessage}"></p>
         </div>
     </div>
 
-    <label for="city">City</label>
-    <input id="city" type="text" placeholder="Enter the city where you live" th:field="*{city}" required><br><br>
+    <div class="input-container">
+        <label for="city">City</label>
+        <input id="city" type="text" class="input" placeholder="Enter the city where you live" th:field="*{city}" required>
+    </div>
 
-    <button><a th:href="@{/employee/all}">Cancel</a></button>
-    <input type="submit" value="Create">
+    <div class="button-container">
+        <button id="cancel-button"><a th:href="@{/employee/all}">Cancel</a></button>
+        <button  type="submit" id="create-button" value="Create">Create</button>
+    </div>
 </form>
 </body>
 </html>

@@ -21,7 +21,7 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping("/registerGet")
+    @GetMapping("/")
     public String registerGet(Model model) {
 
         model.addAttribute("accountDto", new AccountDto());
@@ -46,13 +46,6 @@ public class AuthController {
                 .body("<script>window.location.href='/main-page';</script>");
     }
 
-    @GetMapping("/authoriseGet")
-    public String authoriseGet(Model model) {
-
-        model.addAttribute("authoriseAccountDto", new AccountDto());
-
-        return "login";
-    }
 
     @PostMapping("/authorise")
     public ResponseEntity<String> authorise(@ModelAttribute("authoriseAccountDto") AccountDto authoriseAccountDto) {

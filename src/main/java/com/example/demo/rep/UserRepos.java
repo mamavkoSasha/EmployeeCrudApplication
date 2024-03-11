@@ -17,4 +17,5 @@ public interface UserRepos {
     void updateUser(UserDto userDto, String userId);
 
     void deleteUser(String userId);
+
 }

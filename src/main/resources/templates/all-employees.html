@@ -1,9 +1,26 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>WebWonders</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
         .warning-message {
             display: flex;
             align-items: center;
@@ -18,15 +35,11 @@
         .input-container {
             display: flex;
             align-items: center;
+            margin-top: 20px;
         }
 
         .input-container label {
             margin-right: 10px;
-        }
-    </style>
-    <style>
-        .selected {
-            background-color: cadetblue;
         }
 
         ul.pagination {
@@ -58,8 +71,45 @@
             background-color: #007bff;
             color: #fff;
         }
+
+        table {
+            width: 80%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .btn-container a {
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .btn-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-container button:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
     </style>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $("tr").click(function () {
@@ -75,7 +125,6 @@
 
             function deleteEmployeeById(employeeId) {
                 if (confirm("Are you sure you want to delete this department?")) {
-
                     $.post("/employee/delete/" + employeeId)
                         .done(function () {
                             location.reload();
@@ -88,20 +137,23 @@
         });
     </script>
 </head>
+
 <body>
 <h1>Employees</h1>
+
 <div class="input-container">
     <form action="/employee/all" method="get">
         <label for="name">Search by name:</label>
         <input type="text" id="name" name="name">
         <input type="submit" value="Search">
     </form>
+
     <div th:if="${warningMessage}" class="warning-message">
         <i class="fas fa-exclamation-circle eye-icon"></i>
         <p th:text="${warningMessage}"></p>
     </div>
 </div>
-</form>
+
 <ul class="pagination">
     Pages:
     <li th:each="page: ${#numbers.sequence(1, pagination.totalPages)}"
@@ -110,7 +162,8 @@
                 th:text="${page}"></span></a>
     </li>
 </ul>
-<table border="1">
+
+<table>
     <tr>
         <th>EmpID</th>
         <th>EmpName</th>
@@ -119,7 +172,9 @@
         <th>Date</th>
         <th>Age</th>
         <th>City</th>
-
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
     <tbody>
@@ -138,21 +193,25 @@
             <button class="edit-btn">Edit</button>
         </a></td>
         <td>
-            <button th:class="delete-btn">Delete</button>
+            <button class="delete-btn">Delete</button>
         </td>
     </tr>
     </tbody>
 
 </table>
+
 <div th:unless="${not #lists.isEmpty(pagination.data)}">
     <h3>There are no employees</h3>
 </div>
-<br>
-<a th:href="@{/main-page}">
-    <button><-Back</button>
-</a>
-<a th:href="@{/employee/create}">
-    <button>Create new employee</button>
-</a>
+
+<div class="btn-container">
+    <a th:href="@{/main-page}">
+        <button><-Back</button>
+    </a>
+    <a th:href="@{/employee/create}">
+        <button>Create new employee</button>
+    </a>
+</div>
 </body>
+
 </html>

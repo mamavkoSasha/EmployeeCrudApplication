@@ -2,33 +2,87 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>View Employee</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        .column {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            text-align: left;
+        }
+
+        b {
+            font-weight: bold;
+        }
+
+        p {
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 <h1>View Employee</h1>
-<div th:each="employee : ${employee}" th:data-dp-id="${employee.empID}">
-    <div class="column">
-        <b>empName:</b> <span th:text="${employee.empName}"></span>
-    </div>
-    <div class="column">
-        <b>empActive:</b> <span th:text="${employee.empActive}"></span>
-    </div>
-    <div class="column">
-        <b>empDepartment:</b> <span th:text="${employee.departmentName}"></span>
-    </div>
-    <div class="column">
-        <b>Date:</b> <span th:text="${employee.date}"></span>
-    </div>
-    <div class="column">
-        <b>Age:</b> <span th:text="${employee.age}"></span>
-    </div>
-    <div class="column">
-        <b>City:</b> <span th:text="${employee.city}"></span>
-    </div>
+
+<div th:each="employee : ${employee}" th:data-dp-id="${employee.empID}" class="column">
+    <b>Employee Name:</b> <span th:text="${employee.empName}"></span>
 </div>
+<div th:each="employee : ${employee}" th:data-dp-id="${employee.empID}" class="column">
+    <b>Employee Active:</b> <span th:text="${employee.empActive}"></span>
+</div>
+<div th:each="employee : ${employee}" th:data-dp-id="${employee.empID}" class="column">
+    <b>Employee Department:</b> <span th:text="${employee.departmentName}"></span>
+</div>
+<div th:each="employee : ${employee}" th:data-dp-id="${employee.empID}" class="column">
+    <b>Date:</b> <span th:text="${employee.date}"></span>
+</div>
+<div th:each="employee : ${employee}" th:data-dp-id="${employee.empID}" class="column">
+    <b>Age:</b> <span th:text="${employee.age}"></span>
+</div>
+<div th:each="employee : ${employee}" th:data-dp-id="${employee.empID}" class="column">
+    <b>City:</b> <span th:text="${employee.city}"></span>
+</div>
+
+<p>Information...</p>
+
 <br>
-Information...<br><br>
+
 <a th:href="@{/employee/all}">
-    <button><-Back</button>
+    <button><- Back</button>
 </a>
 </body>
 </html>

@@ -1,19 +1,74 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>View Employee</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        .column {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            text-align: left;
+        }
+
+        b {
+            font-weight: bold;
+        }
+
+        p {
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
+
 <body>
-<h1>View Employee</h1>
-<div th:each="department : ${department}" th:data-dp-id="${department.dpID}">
-    <div class="column">
-        <b>dpName:</b> <span th:text="${department.dpName}"></span>
-    </div>
+<h1>View Department</h1>
+
+<div th:each="department : ${department}" th:data-dp-id="${department.dpID}" class="column">
+    <b>Department Name:</b> <span th:text="${department.dpName}"></span>
 </div>
-<br>
-Information...<br><br>
+
+<p>Information...</p>
+
 <a th:href="@{/department/all}">
-    <button><-Back</button>
+    <button><- Back</button>
 </a>
 </body>
+
 </html>

@@ -1,10 +1,62 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>New Department</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #empAge {
+            width: 80px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         .warning-message {
             display: flex;
             align-items: center;
@@ -16,35 +68,61 @@
             margin-right: 5px;
         }
 
-        #empAge {
-            width: 80px;
-        }
-
-        .input-container {
+        .button-container {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
         }
 
-        .input-container label {
-            margin-right: 10px;
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        #create-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        #cancel-button {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        button:hover {
+            opacity: 0.8;
         }
     </style>
 
 </head>
+
 <body>
 <h1>Create new Department</h1>
 <form th:method="post" th:action="@{/department/create}" th:object="${department}">
-    <div class="input-container">
-        <label for="dpName">dpName</label>
-        <input id="dpName" type="text" placeholder="Enter name" th:field="*{dpName}" required><br><br>
+
+
+        <div class="input-container">
+            <label for="empName">Department Name</label>
+            <input id="empName" type="text" class="input" placeholder="Enter name" th:field="*{dpName}" required>
+        </div>
+
         <div th:if="${warningMessage}" class="warning-message">
             <i class="fas fa-exclamation-circle eye-icon"></i>
             <p th:text="${warningMessage}"></p>
         </div>
-    </div>
 
-    <button><a th:href="@{/department/all}">Cancel</a></button>
-    <input type="submit" value="Create">
+
+    <div class="button-container">
+        <button id="cancel-button"><a th:href="@{/department/all}">Cancel</a></button>
+        <button type="submit" id="create-button" value="Create">Create</button>
+    </div>
 </form>
 </body>
+
 </html>
