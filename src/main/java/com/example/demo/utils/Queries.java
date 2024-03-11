@@ -26,4 +26,14 @@ public interface Queries {
         TOTAL_COUNT,
         GET_ALL
     }
+
+    @SqlResource.Path(pattern = "sql/users/{0}.sql")
+    enum Users implements SqlResource {
+        INSERT,
+        DELETE,
+        UPDATE,
+        SELECT_BY_EMAIL,
+        SELECT_BY_USER_ID,
+        SELECT_BY_USERNAME
+    }
 }
